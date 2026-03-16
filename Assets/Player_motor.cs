@@ -17,6 +17,9 @@ public class Player_motor : MonoBehaviour
 
     void OnMove(InputValue value)
     {
-        Debug.Log("Move");
+        //Debug.Log("Move");
+        // Debug.Log(value.Get<Vector2>());
+        Vector2 direction = value.Get<Vector2>();
+        transform.position += new Vector3(direction.x, direction.y, 0);
     }
 }
