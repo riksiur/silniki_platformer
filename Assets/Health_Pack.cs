@@ -18,5 +18,6 @@ public class Health_Pack : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         collision.GetComponent<Health_Component>().AddHealth(HealingValue);
+        Destroy(gameObject);
     }
 }

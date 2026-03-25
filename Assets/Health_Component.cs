@@ -29,6 +29,11 @@ public class Health_Component : MonoBehaviour
     public void AddHealth(float HealingValue)
     {
         health += HealingValue;
+
+        if (health >= maxHealth)
+        {
+            health = maxHealth;
+        }
         Debug.Log(health);
     }
     
