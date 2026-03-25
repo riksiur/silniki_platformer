@@ -26,4 +26,10 @@ public class Health_Component : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    public void AddHealth(float HealingValue)
+    {
+        health += HealingValue;
+        Debug.Log(health);
+    }
+    
 }
