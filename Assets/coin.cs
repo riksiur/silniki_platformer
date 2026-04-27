@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class Spike : MonoBehaviour
+public class coin : MonoBehaviour
 {
-    public float Damage = 1;
+    public float coinvalue = 1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -12,9 +12,10 @@ public class Spike : MonoBehaviour
     void Update()
     {
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        // Destroy(collision.gameObject);
-        collision.GetComponent<healthcomponent>().AddDamage(Damage);
+        collision.GetComponent<coincomponent>().AddCoin(coinvalue);
+        Destroy(gameObject);
     }
+
 }

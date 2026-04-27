@@ -1,36 +1,31 @@
-using System;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 
-public class UI_Health_Display : MonoBehaviour
+public class UI_health_display : MonoBehaviour
 {
-    public Health_Component healthComponent;
+    public healthcomponent healthComponent;
     public TextMeshProUGUI textComponent;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
-        healthComponent.OnHealthChanged += OnHealthChanged;
         healthComponent.OnHealthInitialized += OnHealthInitialized;
+        healthComponent.OnHealthChanged += OnHealthChanged;
     }
 
-    private void OnHealthInitialized(float newHealth)
+    private void OnHealthInitialized(float Health)
     {
-        textComponent.text = newHealth.ToString();
+        textComponent.text = Health.ToString();
     }
 
     private void OnHealthChanged(float newHealth, float amountChanged)
     {
-        //Debug.Log(newHealth + ":" + amountChanged);
         textComponent.text = newHealth.ToString();
+        //Debug.Log(newHealth + ":" + amountChanged);
     }
-    
 
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 }

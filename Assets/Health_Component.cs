@@ -1,67 +1,65 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class Health_Component : MonoBehaviour
+public class healthcomponent : MonoBehaviour
 {
-    private float health = 10;
-    public float maxHealth = 10;
-    private bool invincibility;
+    private float Health = 15;
+    private float MaxHealth = 15;
+    private bool invicibility;
 
-    public delegate void OnHealthInitializedHandler(float newHealth);
-    public delegate void OnHealthChangeHandler(float newHealth, float amountChanged);
-    public event OnHealthChangeHandler OnHealthChanged;
+    public delegate void OnHealthInitializedHandler(float Health);
+    public delegate void OnHealthChangedHandler(float newHealth, float amountChanged);
+    public event OnHealthChangedHandler OnHealthChanged;
     public event OnHealthInitializedHandler OnHealthInitialized;
-
-    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
-        OnHealthInitialized?.Invoke(health);
+        Health = MaxHealth;
+        OnHealthInitialized?.Invoke(Health);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
 
+    }
     public void AddDamage(float damage)
     {
-        
-        //Debug.Log(health);
-        if (!invincibility)
+        if (!invicibility)
+
         {
-            health -= damage;
-            OnHealthChanged?.Invoke(health, damage);
-            invincibility = true;
-            StartCoroutine(ResetInvincibility(2));
-        }
-        if (health <= 0)
-        {
-            Destroy(gameObject);
+            Health -= damage;
+            OnHealthChanged?.Invoke(Health, damage);
+            invicibility = true;
+            StartCoroutine(Resetinvincibility(1));
         }
 
+        //Debug.Log(Health);
+
+        if (Health <= 0)
+        {
+            Health = 0;
+            SceneManager.LoadScene("endgame");
+        }
+        OnHealthChanged?.Invoke(Health, -damage);
     }
-
-    IEnumerator ResetInvincibility(float resetTime)
+    IEnumerator Resetinvincibility(float resetTime)
     {
         yield return new WaitForSeconds(resetTime);
-        invincibility = false;
+        invicibility = false;
     }
-    
-
     public void AddHealth(float HealingValue)
     {
-        health += HealingValue;
+        Health += HealingValue;
 
-        if (health >= maxHealth)
+        if (Health >= MaxHealth)
         {
-            health = maxHealth;
+            Health = MaxHealth;
         }
-        OnHealthChanged?.Invoke(health, HealingValue);
-        Debug.Log(health);
+        OnHealthChanged?.Invoke(Health, HealingValue);
+        // Debug.Log(Health);
+
+
     }
-    
 }
