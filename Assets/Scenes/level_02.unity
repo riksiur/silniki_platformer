@@ -17756,9 +17756,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  jumpforce: 6
-  maxspeed: 5
-  stoppingforce: 7
+  jumpForce: 10
+  maxSpeed: 5
+  stoppingForce: 5
+  dashforce: 3
 --- !u!50 &2137572657
 Rigidbody2D:
   serializedVersion: 5
