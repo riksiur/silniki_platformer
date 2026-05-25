@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class healthcomponent : MonoBehaviour
 {
-    private float Health = 15;
-    private float MaxHealth = 15;
+    private float Health = 5;
+    private float MaxHealth = 5;
     private bool invicibility;
 
     public delegate void OnHealthInitializedHandler(float Health);
@@ -40,7 +40,7 @@ public class healthcomponent : MonoBehaviour
         if (Health <= 0)
         {
             Health = 0;
-            SceneManager.LoadScene("endgame");
+            SceneManager.LoadScene("EndScene");
         }
         OnHealthChanged?.Invoke(Health, -damage);
     }
