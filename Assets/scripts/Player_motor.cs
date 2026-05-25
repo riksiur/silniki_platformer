@@ -33,6 +33,7 @@ public class Player_motor : MonoBehaviour
 
     private void FixedUpdate()
     {
+        animator.SetFloat("SpeedY", rigidbody2D.linearVelocityY);
         //(check if moving right)
         if (direction.x > 0)
         {
